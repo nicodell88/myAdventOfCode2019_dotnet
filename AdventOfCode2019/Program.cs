@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
 namespace AdventOfCode2019
 {
     class MainClass
@@ -22,10 +22,30 @@ namespace AdventOfCode2019
                 }
             }
 
-            foreach (int element in Data)
+            //foreach (int element in Data)
+            //{
+            //    Console.WriteLine($"{element}");
+            //}
+            //Console.WriteLine("@@@@@@@@@@@@@@@@@");
+
+            int[] DataArray = Data.ToArray();
+
+            //foreach (var element in DataArray)
+            //{
+            //    Console.WriteLine($"{element}");
+            //}
+            //Console.WriteLine("@@@@@@@@@@@@@@@@@");
+
+            Console.WriteLine(DataArray.Sum());
+
+            //foreach (var element in DataArray)
+            for (int i = 0; i < DataArray.Length; i++)
             {
-                Console.WriteLine($"{element}");
+                DataArray[i] = DataArray[i]/3 - 2;
             }
+
+            Console.WriteLine(DataArray.Sum());
+            //Console.WriteLine(DataArray.Length);
 
         }
     }
