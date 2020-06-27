@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq; //inherit the sum method?
 
-
+using handleData;
 namespace AdventOfCode2019
 {
     public class Day1
@@ -47,8 +47,10 @@ namespace AdventOfCode2019
             Console.WriteLine($"Solution to Task 2: {fuel.Sum()}");
         }
     }
-
-    class Data
+}
+namespace handleData
+{ 
+    partial class Data
     {
         internal static List<int> GetIntList(String inp)
         {
