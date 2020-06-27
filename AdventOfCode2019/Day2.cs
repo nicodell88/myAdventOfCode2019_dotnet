@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using handleData;
+using System.Linq;
 
 namespace AdventOfCode2019
 {
@@ -56,9 +57,78 @@ namespace AdventOfCode2019
 
             Console.WriteLine($"Day 2 Task 1 Solution: {data[0]}");
         }
+
+        //--- Day 2: 1202 Program Alarm ---
+        //https://adventofcode.com/2019/day/2
+        // Task 2
         public void Task2()
         {
+            List<int> dataFresh = Data.GetIntListFromCSV("../../day2.txt");
+            int[] data = dataFresh.ToArray(); ;
+            
+            foreach (int x1 in Enumerable.Range(0, 100))
+            {
+                foreach (int x2 in Enumerable.Range(0, 100))
+                {
+                    dataFresh.CopyTo(data);
 
+                    //Console.WriteLine(data[0]);
+
+                    data[1] = x1;
+                    data[2] = x2;
+
+                    //Console.WriteLine($"Trying {x1}, {x2}");
+
+                    for (int i = 0; i < data.Count(); i += 4)
+                    {
+                        if (i + 3 > data.Count())
+                        {
+                            break;
+                        }
+                        int halt = 0;
+
+                        switch (data[i])
+                        {
+                            case 1:
+                                halt = 0;
+                                data[(data[i + 3])] = data[(data[i + 1])] + data[(data[i + 2])];
+                                break;
+                            case 2:
+                                halt = 0;
+                                data[data[i + 3]] = data[data[i + 1]] * data[data[i + 2]];
+                                break;
+                            case 99:
+                                halt = 1;
+                                //Console.WriteLine(i);
+                                //Console.WriteLine("Encountered opcode 99.");
+                                break;
+                            default:
+                                halt = 2;
+                                //Console.WriteLine("Encountered unknown opcode.");
+                                
+                                break;
+                        }
+
+                        if (halt != 0)
+                        {
+                            break;
+                        }
+
+                    }
+                    if(data[0]== 19690720)
+                    {
+                            Console.Write(x1);
+                            Console.WriteLine(x2);
+                        return;
+                    }
+                }
+            }
+
+
+
+            Console.WriteLine("Solution not found.");
+
+            
         }
     }
 
